@@ -1,0 +1,32 @@
+body{
+    margin: 0;
+    display: grid;
+    justify-items: center;
+    gap: 200px;
+}
+
+#header{
+    font-size: 70px;
+    padding-top: 30px;
+}
+
+#gameBoardCont{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: black;
+    gap: 5px;
+    min-width: 320px;
+    width: 40vw;
+    max-width: 650px;
+    min-height: 320px;
+    height: 40vw;
+    max-height: 650px;
+}
+
+.square{
+    font-size: 70px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
