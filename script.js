@@ -13,20 +13,22 @@ const gameBoardCont = document.querySelector('#gameBoardCont');
 arr.forEach(()=>{
     const square = document.createElement('div');
     square.classList = 'square';
-    square.textContent = 'X'
+    // square.textContent = 'X';
     gameBoardCont.appendChild(square);
 
     //Adds event listener to each div
-
-    
+    square.addEventListener('click', ()=>{
+        square.textContent = player1.mark;
+    })
 
     square.addEventListener('mouseover', ()=>{
         square.style.backgroundColor = 'blue';
-    })
+    });
 
     square.addEventListener('mouseleave', ()=>{
         square.style.backgroundColor =  'white';
-    })
+    });
+
 
 
 
@@ -34,13 +36,32 @@ arr.forEach(()=>{
 
 })();
 
-const playerFactory = name => {
+//Factory Function that creates player
+const playerFactory = (name, mark) => {
     name;
+    mark;
 
     return{
-        name: name
-    }
-}
+        name: name,
+        mark: mark,
+    };
+};
 
-const player1 = playerFactory('Zephin');
-console.log(player.name)
+const gameObj = (()=>{
+
+    //Creates Players
+    const player1 = playerFactory('Player 1', 'X');
+    const player2 = playerFactory('Player 2', 'O');
+
+    const activePlayer = player1;
+
+    return{
+        player1: player1,
+    }
+
+
+
+
+
+
+})();
