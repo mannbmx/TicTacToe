@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Short+Stack&display=swap');
+
+*{
+    font-family: 'Short Stack';
+}
+
 body{
     margin: 0;
     display: grid;
@@ -13,6 +19,7 @@ body{
 #gameBoardCont{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     background-color: black;
     gap: 5px;
     min-width: 320px;
@@ -24,7 +31,7 @@ body{
 }
 
 .square{
-    font-size: 4em;
+    font-size: 9vw;
     background-color: white;
     display: flex;
     justify-content: center;

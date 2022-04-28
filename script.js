@@ -35,22 +35,28 @@ arr.forEach((element, index)=>{
 
     //Adds event listener to each div
     square.addEventListener('click', ()=>{
-        if(square.style.backgroundColor == 'red' || square.style.backgroundColor == 'green'){
+        if(square.textContent == 'X' || square.textContent == 'O'){
             alert('Choose a different square')
         }else{
-            square.style.backgroundColor = activePlayer.mark;
+            square.textContent = activePlayer.mark;
             arr[index] = activePlayer.mark;
+            checkWinner();
+            if(winner != null){
+                
+                setTimeout(()=>{alert('Winner: ' + winner) }, 1)
+            }
             switchPlayer();
+            
         }
     })
 
-    // square.addEventListener('mouseover', ()=>{
-    //     square.style.backgroundColor = 'blue';
-    // });
+    square.addEventListener('mouseover', ()=>{
+        square.style.backgroundColor = '#D3D3D3';
+    });
 
-    // square.addEventListener('mouseleave', ()=>{
-    //     square.style.backgroundColor =  'white';
-    // });
+    square.addEventListener('mouseleave', ()=>{
+        square.style.backgroundColor =  'white';
+    });
 
 
 
@@ -58,12 +64,13 @@ arr.forEach((element, index)=>{
 })
 
     //Creates Players
-    const player1 = playerFactory('Player 1', 'red');
-    const player2 = playerFactory('Player 2', 'green');
+    const player1 = playerFactory('Player 1', 'X');
+    const player2 = playerFactory('Player 2', 'O');
 
    
     //Initial Game Values
     let activePlayer = player1;
+    let winner = null;
     
 
     //Switches active player 
@@ -75,6 +82,32 @@ arr.forEach((element, index)=>{
             activePlayer = player1;
             console.log(activePlayer)
         }
+    }
+
+    //checks for a winner
+    const checkWinner = ()=> {
+        arr.forEach((element)=>{
+            if(element == arr[0] && element == arr[1] && element == arr[2] && element != ''){
+                winner = activePlayer.name
+            }else if(element == arr[3] && element == arr[4] && element == arr[5] && element != ''){
+                winner = activePlayer.name
+            }else if(element == arr[6] && element == arr[7] && element == arr[8] && element != ''){
+                winner = activePlayer.name
+            }else if(element == arr[0] && element == arr[4] && element == arr[8] && element != ''){
+                winner = activePlayer.name
+            }else if(element == arr[2] && element == arr[4] && element == arr[6] && element != ''){
+                winner = activePlayer.name
+            }else if(element == arr[0] && element == arr[3] && element == arr[6] && element != ''){
+                winner = activePlayer.name
+            }else if(element == arr[1] && element == arr[4] && element == arr[7] && element != ''){
+                winner = activePlayer.name
+            }else if(element == arr[2] && element == arr[5] && element == arr[8] && element != ''){
+                winner = activePlayer.name
+            }
+
+            return('break');
+          
+        })
     }
     
  
