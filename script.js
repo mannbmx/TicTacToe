@@ -19,49 +19,49 @@ const playerFactory = (name, mark) => {
 const gameObj = (()=>{
 
     //Creates game board array and adds 9 items
-let arr = [];    
-for(let i=0; i<9; i++){
-    arr.push('');
-}
-//Selects game boards container
-const gameBoardCont = document.querySelector('#gameBoardCont');
+    let arr = [];    
+    for(let i=0; i<9; i++){
+        arr.push('');
+    }
+    //Selects game boards container
+    const gameBoardCont = document.querySelector('#gameBoardCont');
 
-//Creates a div in each array item
-arr.forEach((element, index)=>{
-    const square = document.createElement('div');
-    square.classList = 'square';
-    // square.textContent = 'X';
-    gameBoardCont.appendChild(square);
+    //Creates a div in each array item
+    arr.forEach((element, index)=>{
+        const square = document.createElement('div');
+        square.classList = 'square';
+        // square.textContent = 'X';
+        gameBoardCont.appendChild(square);
 
-    //Adds event listener to each div
-    square.addEventListener('click', ()=>{
-        if(square.textContent == 'X' || square.textContent == 'O'){
-            alert('Choose a different square')
-        }else{
-            square.textContent = activePlayer.mark;
-            arr[index] = activePlayer.mark;
-            checkWinner();
-            if(winner != null){
+        //Adds event listener to each div
+        square.addEventListener('click', ()=>{
+            if(square.textContent == 'X' || square.textContent == 'O'){
+                alert('Choose a different square')
+            }else{
+                square.textContent = activePlayer.mark;
+                arr[index] = activePlayer.mark;
+                checkWinner();
+                if(winner != null){
+                    
+                    setTimeout(()=>{alert('Winner: ' + winner) }, 1)
+                }
+                switchPlayer();
                 
-                setTimeout(()=>{alert('Winner: ' + winner) }, 1)
             }
-            switchPlayer();
-            
-        }
+        })
+
+        square.addEventListener('mouseover', ()=>{
+            square.style.backgroundColor = '#D3D3D3';
+        });
+
+        square.addEventListener('mouseleave', ()=>{
+            square.style.backgroundColor =  'white';
+        });
+
+
+
+
     })
-
-    square.addEventListener('mouseover', ()=>{
-        square.style.backgroundColor = '#D3D3D3';
-    });
-
-    square.addEventListener('mouseleave', ()=>{
-        square.style.backgroundColor =  'white';
-    });
-
-
-
-
-})
 
     //Creates Players
     const player1 = playerFactory('Player 1', 'X');
@@ -84,7 +84,7 @@ arr.forEach((element, index)=>{
         }
     }
 
-    //checks for a winner
+    //checks for a winner or a cats game
     const checkWinner = ()=> {
         arr.forEach((element)=>{
             if(element == arr[0] && element == arr[1] && element == arr[2] && element != ''){
@@ -104,17 +104,30 @@ arr.forEach((element, index)=>{
             }else if(element == arr[2] && element == arr[5] && element == arr[8] && element != ''){
                 winner = activePlayer.name
             }
-
-            return('break');
           
         })
+        if(arr.includes('') == false){
+            setTimeout(() =>{alert('Cats Game!')},10)
+
+        }
     }
     
  
+    const reset = () =>{
+        arr.forEach((element, index) =>{
+            arr[index] = "";
+        })
+        const squareReset = document.querySelectorAll('.square')
+            squareReset.forEach((element, index) =>{
+                element.textContent = '';
+            })
+
+        activePlayer = player1;
+        winner = null;
+    }
+
     return{
-        activePlayer,
-        switchPlayer,
-        arr
+        reset
     }
 
 
