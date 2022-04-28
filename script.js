@@ -18,7 +18,8 @@ arr.forEach(()=>{
 
     //Adds event listener to each div
     square.addEventListener('click', ()=>{
-        square.textContent = player1.mark;
+        square.textContent = gameObj.activePlayer.mark;
+        gameObj.switchPlayer();
     })
 
     square.addEventListener('mouseover', ()=>{
@@ -53,13 +54,27 @@ const gameObj = (()=>{
     const player1 = playerFactory('Player 1', 'X');
     const player2 = playerFactory('Player 2', 'O');
 
-    const activePlayer = player1;
+   
 
-    return{
-        player1: player1,
+    let activePlayer = player1;
+    
+
+    //Switches player turns
+    const switchPlayer = () => {
+        if(activePlayer == player1){
+            activePlayer = player2;
+            console.log(activePlayer)
+        }else{
+            activePlayer = player1;
+            console.log(activePlayer)
+        }
     }
-
-
+    
+ 
+    return{
+        activePlayer,
+        switchPlayer
+    }
 
 
 
