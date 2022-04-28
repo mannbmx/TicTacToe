@@ -35,9 +35,13 @@ arr.forEach((element, index)=>{
 
     //Adds event listener to each div
     square.addEventListener('click', ()=>{
-        square.style.backgroundColor = activePlayer.mark;
-        arr[index] = activePlayer.mark;
-        switchPlayer();
+        if(square.style.backgroundColor == 'red' || square.style.backgroundColor == 'green'){
+            alert('Choose a different square')
+        }else{
+            square.style.backgroundColor = activePlayer.mark;
+            arr[index] = activePlayer.mark;
+            switchPlayer();
+        }
     })
 
     // square.addEventListener('mouseover', ()=>{
@@ -58,7 +62,7 @@ arr.forEach((element, index)=>{
     const player2 = playerFactory('Player 2', 'green');
 
    
-
+    //Initial Game Values
     let activePlayer = player1;
     
 
