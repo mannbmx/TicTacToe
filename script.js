@@ -1,10 +1,4 @@
 
-const gameBoard = (()=>{
-
-
-
-})();
-
 //Factory Function that creates player
 const playerFactory = (name, mark) => {
     name;
@@ -25,6 +19,7 @@ const gameObj = (()=>{
     }
     //Selects game boards container
     const gameBoardCont = document.querySelector('#gameBoardCont');
+    const currentMove = document.querySelector('.currentMove');
 
     //Creates a div in each array item
     arr.forEach((element, index)=>{
@@ -43,7 +38,7 @@ const gameObj = (()=>{
                 checkWinner();
                 if(winner != null){
                     
-                    setTimeout(()=>{alert('Winner: ' + winner) }, 1)
+                    setTimeout(()=>{currentMove.textContent = winner + ' is the winner!' }, 1)
                 }
                 switchPlayer();
                 
@@ -58,28 +53,35 @@ const gameObj = (()=>{
             square.style.backgroundColor =  'white';
         });
 
-
-
-
     })
 
     //Creates Players
-    const player1 = playerFactory('Player 1', 'X');
-    const player2 = playerFactory('Player 2', 'O');
+    const player1 = playerFactory('Player One', 'X');
+    const player2 = playerFactory('Player Two', 'O');
 
+    //Change Player's names
+    const changeName = ()=>{
+        player1.name = prompt("Enter Player One's name:")
+            if(player1.name == null){ player1.name = 'Player One'}
+        player2.name = prompt("Enter Player Two's name:")
+             if(player2.name == null){ player2.name = 'Player Two'}
+        currentMove.textContent = player1.name +"'s Move!"
+    };
    
     //Initial Game Values
     let activePlayer = player1;
     let winner = null;
-    
+    currentMove.textContent = activePlayer.name + "'s Move!";
 
     //Switches active player 
     const switchPlayer = () => {
         if(activePlayer == player1){
             activePlayer = player2;
+            currentMove.textContent = activePlayer.name + "'s Move!";
             console.log(activePlayer)
         }else{
             activePlayer = player1;
+            currentMove.textContent = activePlayer.name + "'s Move!";
             console.log(activePlayer)
         }
     }
@@ -107,12 +109,12 @@ const gameObj = (()=>{
           
         })
         if(arr.includes('') == false){
-            setTimeout(() =>{alert('Cats Game!')},10)
+            setTimeout(() =>{currentMove.textContent = 'TIE GAME!'},10)
 
         }
     }
     
- 
+    //Resets the game
     const reset = () =>{
         arr.forEach((element, index) =>{
             arr[index] = "";
@@ -123,14 +125,13 @@ const gameObj = (()=>{
             })
 
         activePlayer = player1;
+        currentMove.textContent = activePlayer.name + "'s Move!";
         winner = null;
     }
-
+    //return
     return{
-        reset
+        reset,
+        changeName
     }
-
-
-
 
 })();

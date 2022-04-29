@@ -14,6 +14,8 @@ body{
 #header{
     font-size: 70px;
     padding-top: 30px;
+    display: grid;
+    gap: 10px;
 }
 
 #gameBoardCont{
@@ -39,4 +41,28 @@ body{
     max-height: 100%;
     width: 100%;
 
+}
+
+.currentMove{
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.reset{
+    width: 100px;
+    justify-self: center;
+}
+
+.butCtn{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+@media screen and (max-width: 430px){
+    #header{
+        font-size:50px;
+    }
 }

@@ -10,8 +10,12 @@
 </head>
 <body>
     <div id="header">Tic Tac Toe
-        <button class="reset" onclick="gameObj.reset()">Reset</button>
-        <div class="current move"></div>
+        <div class="butCtn">
+            <button class="reset" onclick="gameObj.reset()">Reset</button>
+            <button class="changeName" onclick="gameObj.changeName()">Change Player Names</button>
+        </div>
+        
+        <div class="currentMove"></div>
     </div>
     <div id="gameBoardCont"></div>
 </body>
